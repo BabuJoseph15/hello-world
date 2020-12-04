@@ -1,0 +1,10 @@
+---
+-
+  become: true
+  hosts: webservers
+  tasks:
+    -
+      copy:
+        dest: /opt/tomcat8/webapps
+        src: /opt/playbooks/webapp/target
+      name: "copy war onto tomcat server"
