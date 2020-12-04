@@ -1,0 +1,2 @@
+[webservers]
+172.31.47.98 ansible_ssh_user=ansadmin ansible_ssh_pass=admin123
