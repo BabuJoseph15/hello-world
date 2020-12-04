@@ -20,10 +20,9 @@ pipeline {
            }
         }
         
-     stage('Ansible Deploy') {
-             
+     stage('Ansible Deploy') {  
             steps {
-                sshagent (credentials: ['tomcat
+                sshagent (credentials: ['tomcat']
                 ansiblePlaybook(
                     credentialsId: 'Tomcat-Credentials'
                     inventory: 'dev.inv',
