@@ -12,7 +12,7 @@ pipeline {
                }    
            }
         }
-         stage('maven3') {
+         stage('package') {
            steps {
                script {
                    sh 'mvn clean package'
