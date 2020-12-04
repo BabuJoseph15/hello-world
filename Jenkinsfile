@@ -39,7 +39,7 @@ pipeline {
              
             steps {
                  
-           sh "ansible-playbook main.yml -i inventories/etc/ansible/hosts --user jenkins --key-file ~/.ssh/id_rsa"
+           sh "ansible-playbook copyfile.yml -i inventories/etc/ansible/hosts --user jenkins --key-file ~/.ssh/id_rsa"
 }
 }
 }
