@@ -23,7 +23,7 @@ pipeline {
              
             steps {
                  
-           sh "ansiblePlaybook credentialsId: 'Tomcat-Credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'copyfile.yml'"
+           sh "ansible-playbook credentialsId: 'Tomcat-Credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'copyfile.yml'"
 }
 }
 }
