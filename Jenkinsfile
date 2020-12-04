@@ -19,7 +19,7 @@ pipeline {
                 script {
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-               def tfHome = tool name: 'Ansible'
+               def tfHome = tool name: 'ansible'
                 env.PATH = "${tfHome}:${env.PATH}"
                  sh 'ansible --version'
                     
@@ -31,7 +31,7 @@ pipeline {
          stage('maven3') {
            steps {
              
-                sh 'mvn package'             
+                sh 'mvn clean package'             
           }
         }
         
@@ -39,7 +39,7 @@ pipeline {
              
             steps {
                  
-           sh "ansible-playbook copyfile.yml -i inventories/etc/ansible/hosts --user jenkins --key-file ~/.ssh/id_rsa"
+           sh "ansiblePlaybook credentialsId: 'Tomcat-Credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'copyfile.yml'"
 }
 }
 }
