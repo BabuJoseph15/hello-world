@@ -23,8 +23,16 @@ pipeline {
      stage('Ansible Deploy') {
              
             steps {
-                 
-           sh "ansible-playbook credentialsId: 'Tomcat-Credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'copyfile.yml'"
+                sshagent (credentials: ['tomcat
+                ansiblePlaybook(
+                    credentialsId: 'Tomcat-Credentials'
+                    inventory: 'dev.inv',
+                    installation: 'ansible
+                    limit: '172.31.16.217',
+                    playbook: 'copyfile.yml
+                    extras: ' options and var that you want add for instance verbose mode : -vvv'
+                )
+            }      
 }
 }
 }
