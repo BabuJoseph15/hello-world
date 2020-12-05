@@ -1,19 +1,10 @@
---- 
-- 
+---
+-
   become: true
-  copy: "src=./target/webapp.war dest=/opt/tomcat8/webapps/"
   hosts: webservers
-  name: "copy war file"
-  notify: "restart tomcat"
-  tasks: 
-    - ~
-- 
-  copy: "src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755"
-  name: "Install Tomcat init script"
-- 
-  name: "Start Tomcat"
-  service: "name=tomcat state=started enabled=yes"
-- 
-  name: "wait for tomcat to start"
-  wait_for: "port={{http_port}}"
-
+  tasks:
+    -
+      copy:
+        dest: /opt/tomcat8/webapps
+        src: ./target/webapp.war
+      name: "copy war onto tomcat server"
