@@ -1,10 +1,24 @@
----
--
+--- 
+- 
   become: true
+  file: 
+    mode: 511
+    path: /opt/tomcat8/webapps/samples
+    state: directory
   hosts: webservers
-  tasks:
-    -
-      copy:
-        dest: /opt/tomcat8/webapps
-        src: /opt/playbooks/webapp/target
-      name: "copy war onto tomcat server"
+  tasks: 
+    - 
+      name: "Create  sample directory"
+- 
+  copy: "src=./target/webapp.war dest=/opt/tomcat8/webapps/"
+  name: "copy war file"
+  notify: "restart tomcat"
+- 
+  copy: "src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755"
+  name: "Install Tomcat init script"
+- 
+  name: "Start Tomcat"
+  service: "name=tomcat state=started enabled=yes"
+- 
+  name: "wait for tomcat to start"
+  wait_for: "port={{http_port}}"     
