@@ -23,7 +23,7 @@ pipeline {
      stage('Ansible Deploy') {  
             steps {
                 script {
-             sh "asiblePlaybook colorized: true, credentialsId: 'Tomcat-Credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'copyfile.yml'"
+             sh "ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'copyfile.yml'"
          }        
 }
 }
