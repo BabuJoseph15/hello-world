@@ -6,5 +6,5 @@
     -
       copy:
         dest: /opt/tomcat8/webapps
-        src: ./target/webapp.war
+        src: /var/lib/jenkins/workspace/ansible-pipelineproject/target/webapp.war
       name: "copy war onto tomcat server"
