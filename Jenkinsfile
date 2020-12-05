@@ -37,7 +37,7 @@ pipeline {
      stage('Ansible Deploy') {  
             steps {
                 script {
-             sh "ansible-playbook main.yml -i inventories/dev/hosts --user jenkins --key-file ~/.ssh/id_rsa"
+             sh "ansible-playbook copyfile.yml -i dev.inv --user ansadmin --key-file ~/.ssh/id_rsa"
          }        
 }
 }
